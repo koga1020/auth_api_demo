@@ -9,7 +9,7 @@ services:
       ports:
         - "5432:5432"
       environment:
-        - POSTGRES_DEV_DB=auth_api_demo
+        - POSTGRES_DEV_DB=auth_api_demo_dev
         - POSTGRES_TEST_DB=auth_api_demo_test
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
