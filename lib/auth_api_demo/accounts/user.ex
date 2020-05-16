@@ -21,5 +21,6 @@ defmodule AuthApiDemo.Accounts.User do
   defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: pass}} = changeset) do
     put_change(changeset, :password_hash, Argon2.hash_pwd_salt(pass))
   end
+
   defp put_password_hash(changeset), do: changeset
 end
