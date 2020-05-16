@@ -18,7 +18,7 @@ defmodule AuthApiDemoWeb.UserController do
 
   def show(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
-    conn |> render("user.json", user: user)
+    render(conn, "user.json", user: user)
   end
 
   def sign_in(conn, %{"email" => email, "password" => password}) do
