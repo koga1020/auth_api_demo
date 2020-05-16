@@ -27,10 +27,10 @@ POST http://localhost:4000/sign-up
 Content-Type: application/json
 
 {
-	"user": {
-		"email": "foo@example.com",
-		"password": "somePassword"
-	}
+  "user": {
+    "email": "foo@example.com",
+    "password": "somePassword"
+  }
 }
 ```
 
