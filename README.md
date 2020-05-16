@@ -1,6 +1,6 @@
 # AuthApiDemo
 
-# Setup
+## Setup
 
 1. setup database
 ```
