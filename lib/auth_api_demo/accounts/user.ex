@@ -5,6 +5,7 @@ defmodule AuthApiDemo.Accounts.User do
   schema "users" do
     field :email, :string
     field :password_hash, :string
+    field :password, :string, virtual: true
 
     timestamps()
   end
@@ -12,8 +13,13 @@ defmodule AuthApiDemo.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password_hash])
-    |> validate_required([:email, :password_hash])
+    |> cast(attrs, [:email, :password])
+    |> put_password_hash()
     |> unique_constraint(:email)
   end
+
+  defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: pass}} = changeset) do
+    put_change(changeset, :password_hash, Argon2.hash_pwd_salt(pass))
+  end
+  defp put_password_hash(changeset), do: changeset
 end
