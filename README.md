@@ -22,6 +22,8 @@ $ mix phx.server
 ## Examples
 
 ### sign-up
+
+request:
 ```
 POST http://localhost:4000/sign-up
 Content-Type: application/json
@@ -43,6 +45,7 @@ response:
 
 ### sign-in
 
+request:
 ```
 POST http://localhost:4000/sign-in
 Content-Type: application/json
@@ -62,6 +65,7 @@ response:
 
 ### whoami
 
+request:
 ```
 GET http://localhost:4000/whoami
 Content-Type: application/json
