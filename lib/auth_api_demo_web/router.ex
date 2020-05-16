@@ -5,6 +5,10 @@ defmodule AuthApiDemoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :require_authenticated do
+    plug AuthApiDemoWeb.Plug.AuthPipeline
+  end
+
   scope "/api", AuthApiDemoWeb do
     pipe_through :api
   end
@@ -29,5 +33,12 @@ defmodule AuthApiDemoWeb.Router do
     pipe_through :api
 
     post "/sign-up", UserController, :create
+    post "/sign-in", UserController, :sign_in
+  end
+
+  scope "/", AuthApiDemoWeb do
+    pipe_through [:api, :require_authenticated]
+
+    get "/whoami", UserController, :show
   end
 end

@@ -101,4 +101,24 @@ defmodule AuthApiDemo.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def get_by_email(email) do
+    case Repo.get_by(User, email: email) do
+      nil ->
+        Argon2.no_user_verify()
+        {:error, "Login error."}
+
+      user ->
+        {:ok, user}
+    end
+  end
+
+  def sign_in(email, password) do
+    with {:ok, user} <- get_by_email(email),
+         {:ok, user} <- Argon2.check_pass(user, password) do
+      AuthApiDemo.Guardian.encode_and_sign(user)
+    else
+      _ -> {:error, :unauthorized}
+    end
+  end
 end

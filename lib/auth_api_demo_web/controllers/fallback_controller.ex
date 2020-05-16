@@ -19,4 +19,10 @@ defmodule AuthApiDemoWeb.FallbackController do
     |> put_view(AuthApiDemoWeb.ErrorView)
     |> render(:"404")
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> json(%{error: "Login Error."})
+  end
 end

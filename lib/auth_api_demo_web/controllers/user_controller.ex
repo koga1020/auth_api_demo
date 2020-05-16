@@ -4,13 +4,8 @@ defmodule AuthApiDemoWeb.UserController do
   alias AuthApiDemo.Accounts
   alias AuthApiDemo.Accounts.User
   alias AuthApiDemo.Guardian
-  
-  action_fallback AuthApiDemoWeb.FallbackController
 
-  def index(conn, _params) do
-    users = Accounts.list_users()
-    render(conn, "index.json", users: users)
-  end
+  action_fallback AuthApiDemoWeb.FallbackController
 
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params),
@@ -21,24 +16,18 @@ defmodule AuthApiDemoWeb.UserController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    render(conn, "show.json", user: user)
+  def show(conn, _params) do
+    user = Guardian.Plug.current_resource(conn)
+    conn |> render("user.json", user: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
+  def sign_in(conn, %{"email" => email, "password" => password}) do
+    case Accounts.sign_in(email, password) do
+      {:ok, token, _claims} ->
+        render(conn, "jwt.json", token: token)
 
-    with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
-      render(conn, "show.json", user: user)
-    end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-
-    with {:ok, %User{}} <- Accounts.delete_user(user) do
-      send_resp(conn, :no_content, "")
+      _ ->
+        {:error, :unauthorized}
     end
   end
 end
