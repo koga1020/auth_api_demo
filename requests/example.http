@@ -1,0 +1,27 @@
+### sign up
+
+POST http://localhost:4000/sign-up
+Content-Type: application/json
+
+{
+	"user": {
+		"email": "foo@example.com",
+		"password": "somePassword"
+	}
+}
+
+### sign in
+
+POST http://localhost:4000/sign-in
+Content-Type: application/json
+
+{
+    "email": "foo@example.com",
+    "password": "somePassword"
+}
+
+### whoami
+
+GET http://localhost:4000/whoami
+Content-Type: application/json
+Authorization: Bearer <set jwt token>
