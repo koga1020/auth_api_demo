@@ -14,6 +14,7 @@ defmodule AuthApiDemo.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
     |> put_password_hash()
     |> unique_constraint(:email)
   end
