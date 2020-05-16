@@ -1,18 +1,79 @@
 # AuthApiDemo
 
-To start your Phoenix server:
+# Setup
 
-  * Setup the project with `mix setup`
-  * Start Phoenix endpoint with `mix phx.server`
+1. setup database
+```
+$ docker-compose up -d
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+2. install dependencies
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```sh
+$ mix deps.get
+```
 
-## Learn more
+3. running
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
+$ mix phx.server
+```
+
+## Examples
+
+### sign-up
+```
+POST http://localhost:4000/sign-up
+Content-Type: application/json
+
+{
+	"user": {
+		"email": "foo@example.com",
+		"password": "somePassword"
+	}
+}
+```
+
+response:
+```
+{
+    "jwt": <token>
+}
+```
+
+### sign-in
+
+```
+POST http://localhost:4000/sign-in
+Content-Type: application/json
+
+{
+    "email": "foo@example.com",
+    "password": "somePassword"
+}
+```
+
+response:
+```
+{
+    "jwt": <token>
+}
+```
+
+### whoami
+
+```
+GET http://localhost:4000/whoami
+Content-Type: application/json
+Authorization: Bearer <set jwt token>
+```
+
+response:
+```
+{
+    "id": 1,
+    "email": "foo@example.com"
+}
+```
+
+
