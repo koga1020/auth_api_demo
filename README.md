@@ -6,7 +6,7 @@ This is an example of a REST API with token-based authentication using Phoenix 1
 
 ## Environment
 
-```sh
+```
 $ elixir -v
 Erlang/OTP 21 [erts-10.3.4] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [hipe]
 
@@ -22,7 +22,7 @@ $ docker-compose up -d
 
 ### 2. install dependencies
 
-```sh
+```
 $ mix deps.get
 ```
 
