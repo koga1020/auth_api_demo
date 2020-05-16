@@ -102,6 +102,18 @@ defmodule AuthApiDemo.Accounts do
     User.changeset(user, attrs)
   end
 
+  @doc """
+  Get User by email.
+
+  ## Examples
+
+      iex> get_by_email("foo@example.com")
+      {:ok, %User{}}
+
+      iex> get_by_email("")
+      {:error, "Login error."}
+
+  """
   def get_by_email(email) do
     case Repo.get_by(User, email: email) do
       nil ->
@@ -113,6 +125,9 @@ defmodule AuthApiDemo.Accounts do
     end
   end
 
+  @doc """
+  sign in by email and password.
+  """
   def sign_in(email, password) do
     with {:ok, user} <- get_by_email(email),
          {:ok, user} <- Argon2.check_pass(user, password) do
