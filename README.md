@@ -21,6 +21,8 @@ $ mix phx.server
 
 ## Examples
 
+You can try the API with [VSCode's REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and [this file](https://github.com/koga1020/auth_api_demo/blob/master/requests/example.http).
+
 ### sign-up
 
 request:
