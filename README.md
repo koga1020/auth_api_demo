@@ -26,7 +26,7 @@ You can try the API with [VSCode's REST Client](https://marketplace.visualstudio
 ### sign-up
 
 request:
-```
+```http
 POST http://localhost:4000/sign-up
 Content-Type: application/json
 
@@ -39,7 +39,7 @@ Content-Type: application/json
 ```
 
 response:
-```
+```json
 {
     "jwt": <token>
 }
@@ -48,7 +48,7 @@ response:
 ### sign-in
 
 request:
-```
+```http
 POST http://localhost:4000/sign-in
 Content-Type: application/json
 
@@ -59,7 +59,7 @@ Content-Type: application/json
 ```
 
 response:
-```
+```json
 {
     "jwt": <token>
 }
@@ -68,14 +68,14 @@ response:
 ### whoami
 
 request:
-```
+```http
 GET http://localhost:4000/whoami
 Content-Type: application/json
 Authorization: Bearer <set jwt token>
 ```
 
 response:
-```
+```json
 {
     "id": 1,
     "email": "foo@example.com"
