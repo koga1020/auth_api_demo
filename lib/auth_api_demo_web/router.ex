@@ -24,4 +24,11 @@ defmodule AuthApiDemoWeb.Router do
       live_dashboard "/dashboard", metrics: AuthApiDemoWeb.Telemetry
     end
   end
+
+  scope "/", AuthApiDemoWeb do
+    pipe_through :api
+
+    resources "/users", UserController, only: [:create, :show]
+  end
+
 end
