@@ -2,18 +2,18 @@
 
 ## Setup
 
-1. setup database
+### 1. setup database
 ```
 $ docker-compose up -d
 ```
 
-2. install dependencies
+### 2. install dependencies
 
 ```sh
 $ mix deps.get
 ```
 
-3. running
+### 3. running
 
 ```
 $ mix phx.server
