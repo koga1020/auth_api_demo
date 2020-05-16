@@ -28,7 +28,6 @@ defmodule AuthApiDemoWeb.Router do
   scope "/", AuthApiDemoWeb do
     pipe_through :api
 
-    resources "/users", UserController, only: [:create, :show]
+    post "/sign-up", UserController, :create
   end
-
 end
