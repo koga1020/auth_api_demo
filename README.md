@@ -41,7 +41,7 @@ Content-Type: application/json
 response:
 ```json
 {
-    "jwt": <token>
+    "jwt": "<token>"
 }
 ```
 
@@ -61,7 +61,7 @@ Content-Type: application/json
 response:
 ```json
 {
-    "jwt": <token>
+    "jwt": "<token>"
 }
 ```
 
